@@ -24,4 +24,5 @@ spec:
   sourceRef:
     kind: GitRepository
     name: team1
+    namespace: team1
 
