@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  creationTimestamp: null
+  name: team1
+spec:
+  hard:
+    cpu: "1"
+status: {}
