@@ -5,7 +5,7 @@ metadata:
   name: team1
   namespace: team1
 spec:
-  interval: 1m0s
+  interval: 5s
   ref:
     branch: main
   url: https://github.com/allymparker/was_team1
@@ -17,11 +17,10 @@ metadata:
   name: team1
   namespace: team1
 spec:
-  interval: 1m0s
+  interval: 5s
   path: ./
   prune: false
   serviceAccountName: team1
   sourceRef:
     kind: GitRepository
     name: team1
-
