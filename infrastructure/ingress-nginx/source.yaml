@@ -1,0 +1,13 @@
+apiVersion: source.toolkit.fluxcd.io/v1beta1
+kind: GitRepository
+metadata:
+  name: ingress-nginx
+  namespace: flux-system
+spec:
+  interval: 120m0s
+  url: https://github.com/kubernetes/ingress-nginx
+  ignore: |
+    /*
+    !/deploy/static/provider/cloud/
+  ref:
+    tag: "controller-v1.1.1"
