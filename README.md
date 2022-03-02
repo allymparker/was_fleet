@@ -6,6 +6,11 @@ onboard new tenant
 fail to deploy to another ns
 fail to go over RQ
 
+# create clusters
+kind delete cluster --name prod && kind create cluster --name prod
+kind delete cluster --name dev && kind create cluster --name dev
+
+# bootstrap dev
 flux bootstrap github \
  --context=kind-dev \
  --owner=allymparker \
@@ -13,8 +18,10 @@ flux bootstrap github \
  --branch=main \
  --personal \
  --path=clusters/dev
+ 
 
-add team2
+ 
+# add team2
 
 mkdir -p ./tenants/base/team2
 
