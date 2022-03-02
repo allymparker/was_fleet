@@ -18,7 +18,7 @@ add team2
 
 mkdir -p ./tenants/base/team2
 
-flux create tenant dev-team --with-namespace=apps2 \
+flux create tenant team2 --with-namespace=apps2 \
  --export > ./tenants/base/team2/rbac.yaml
 
 flux create source git team2 \
