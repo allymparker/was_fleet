@@ -3,7 +3,7 @@ apiVersion: source.toolkit.fluxcd.io/v1beta1
 kind: GitRepository
 metadata:
   name: team2
-  namespace: apps
+  namespace: apps2
 spec:
   interval: 1m0s
   ref:
