@@ -23,27 +23,27 @@ git pull
 
 cat <<EOT >> ./clusters/dev/flux-system/kustomization.yaml
 patches:
-
-- patch: |
-  - op: add
-    path: /spec/template/spec/containers/0/args/0
-    value: --no-cross-namespace-refs=true  
+  - patch: |
+      - op: add
+        path: /spec/template/spec/containers/0/args/0
+        value: --no-cross-namespace-refs=true      
     target:
-    kind: Deployment
-    name: "(kustomize-controller|helm-controller|notification-controller|image-reflector-controller|image-automation-controller)"
-- patch: |
-  - op: add
-    path: /spec/template/spec/containers/0/args/0
-    value: --default-service-account=default  
+      kind: Deployment
+      name: "(kustomize-controller|helm-controller|notification-controller|image-reflector-controller|image-automation-controller)"
+  - patch: |
+      - op: add
+        path: /spec/template/spec/containers/0/args/0
+        value: --default-service-account=default      
     target:
-    kind: Deployment
-    name: "(kustomize-controller|helm-controller)"
-- patch: | - op: add
-  path: /spec/serviceAccountName
-  value: kustomize-controller  
-   target:
-  kind: Kustomization
-  name: "flux-system"
+      kind: Deployment
+      name: "(kustomize-controller|helm-controller)"
+  - patch: |
+      - op: add
+        path: /spec/serviceAccountName
+        value: kustomize-controller      
+    target:
+      kind: Kustomization
+      name: "flux-system"
 EOT
 
 # add team1
@@ -113,10 +113,10 @@ cat <<EOF > team1-patch.yaml
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-name: team1
-namespace: apps1
+  name: team1
+  namespace: apps1
 spec:
-path: ./dev
+  path: ./dev
 EOF
 
 kubectl create quota quota --namespace apps1 --hard=cpu=1 --dry-run=client -oyaml >> team1-quota.yaml
@@ -128,10 +128,10 @@ cat <<EOF > team2-patch.yaml
 apiVersion: kustomize.toolkit.fluxcd.io/v1beta2
 kind: Kustomization
 metadata:
-name: team2
-namespace: apps2
+  name: team2
+  namespace: apps2
 spec:
-path: ./dev
+  path: ./dev
 EOF
 
 kubectl create quota quota --namespace apps2 --hard=cpu=0.2 --dry-run=client -oyaml >> team2-quota.yaml
