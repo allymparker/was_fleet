@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ResourceQuota
+metadata:
+  creationTimestamp: null
+  name: quota
+  namespace: apps2
+spec:
+  hard:
+    cpu: 200m
+status: {}
