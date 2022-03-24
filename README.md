@@ -1,11 +1,13 @@
 # Demo
 
 # create clusters
-
+```
 ./create_cluster dev
+```
 
 # bootstrap dev
 
+```
 flux bootstrap github \
  --context=kind-dev \
  --owner=allymparker \
@@ -17,10 +19,12 @@ flux bootstrap github \
 
 git pull
 
+```
 # apply flux multitenancy isolation
 
 # https://fluxcd.io/docs/installation/#multi-tenancy-lockdown
 
+```
 cat <<EOT >> ./clusters/dev/flux-system/kustomization.yaml
 patches:
   - patch: |
@@ -46,8 +50,10 @@ patches:
       name: "flux-system"
 EOT
 
+```
 # add team1
 
+```
 mkdir -p ./tenants/base/team1
 
 flux create tenant team1 --with-namespace=apps1 \
@@ -74,8 +80,10 @@ kustomize create
 kustomize edit add resource \*
 cd ../../..
 
+```
 # add team2
 
+```
 mkdir -p ./tenants/base/team2
 
 flux create tenant team2 --with-namespace=apps2 \
@@ -102,8 +110,10 @@ kustomize create
 kustomize edit add resource \*
 cd ../../..
 
+```
 # add tenant overlays
 
+```
 mkdir -p tenants/dev
 cd tenants/dev
 
@@ -140,6 +150,8 @@ kustomize edit add patch --path team2-patch.yaml
 kustomize edit add resource team2-quota.yaml
 cd ../..
 
+```
+```
 flux create kustomization tenants \
 --path=./tenants/dev \
 --interval=5s \
@@ -148,8 +160,10 @@ flux create kustomization tenants \
 --prune=true \
 --export > clusters/dev/tenants.yaml
 
+```
 # Let's be naughty
 
+```
 cd ../team1/dev
 kubectl create deploy --namespace=apps2 naughty --image=nginx --dry-run=client -oyaml > naughty.yaml
 kubectl create ns naughty --dry-run=client -oyaml > naughtyns.yaml
@@ -158,9 +172,13 @@ git add .
 git commit -am .
 git push
 
+```
 # Resource Quota
 
+```
 kubectl scale -n apps2 deployment team2-app --replicas 3
 k get events -n apps2
 
 kubectl describe -n apps2 deployments.apps team2-app
+
+```
