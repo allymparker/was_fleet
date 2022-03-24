@@ -44,7 +44,7 @@ patches:
    target:
   kind: Kustomization
   name: "flux-system"
-  EOT
+EOT
 
 # add team1
 
